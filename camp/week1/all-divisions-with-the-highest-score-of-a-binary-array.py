@@ -1,15 +1,19 @@
 class Solution:
     def maxScoreIndices(self, nums: List[int]) -> List[int]:
-        result=defaultdict(list)
-        zero=0
-        one=sum(nums)
-        for i in range(len(nums)):
-            result[zero+one].append(i)
+        l,r=0,sum(nums)
+        n=len(nums)
+        ans=[0]
+        m=r
+        for i in range(n):
             if nums[i]==0:
-                zero+=1
+                l+=1
             else:
-                one-=1
-        result[zero+one].append(len(nums))
-        z=max(result)
-        return result[z]
-    
+                r-=1
+            s=l+r
+            if s==m:
+                ans.append(i+1)
+            elif s>m:
+                ans=[]
+                ans.append(i+1)
+                m=s
+        return ans                 
