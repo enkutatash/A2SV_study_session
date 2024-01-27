@@ -18,9 +18,10 @@ class Solution:
         if cycle==False:
             return None
         start=head
-        while start!=fast:
+        while start:
+            if start==fast:
+                return start
             start=start.next
             fast=fast.next
-        return start
             
         
