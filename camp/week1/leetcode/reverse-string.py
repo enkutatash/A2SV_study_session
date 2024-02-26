@@ -3,10 +3,9 @@ class Solution:
         """
         Do not return anything, modify s in-place instead.
         """
-        l=0
-        r=len(s)-1
-        while l<r:
+        def subfun(l,s,r):
+            if l>=r:
+                return
             s[l],s[r]=s[r],s[l]
-            l+=1
-            r-=1
-        
+            subfun(l+1,s,r-1)
+        subfun(0,s,len(s) -1)
