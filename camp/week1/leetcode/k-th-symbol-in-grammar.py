@@ -1,14 +1,22 @@
 class Solution:
     def kthGrammar(self, n: int, k: int) -> int:
-        if n == 1:
+        if n==1:
             return 0
 
-        total_elements = 2 ** (n - 1)
-        half_elements = total_elements // 2
+        def grammer(k,evenness):
 
-       
-        if k > half_elements:
-            return 1 - self.kthGrammar(n, k - half_elements)
+            if k==0 and evenness:
+                return 0
+            elif k==0 and not evenness:
+                return 1
+            else:
+                mid= k//2
+                checker=k/2
+                if mid==checker:
+                    return grammer(k//2,evenness)
+                return grammer(k//2,not evenness)
+        
+        result=grammer(k-1, True)
+        return result
 
-       
-        return self.kthGrammar(n - 1, k)
+        
