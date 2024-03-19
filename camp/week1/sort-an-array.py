@@ -1,23 +1,24 @@
 class Solution:
     def sortArray(self, nums: List[int]) -> List[int]:
         def merge(left,right):
-            i=j=0
-            n=len(left)
-            m=len(right)
+            i=0
+            j=0
             ans = []
-            while i<n and j<m:
-                if left[i]<=right[j]:
+            while i<len(left) or j<len(right):
+                if i<len(left) and j<len(right):
+                    if left[i]<=right[j]:
+                        ans.append(left[i])
+                        i+=1
+                    else:
+                        ans.append(right[j])
+                        j+=1
+                elif i<len(left):
                     ans.append(left[i])
                     i+=1
                 else:
                     ans.append(right[j])
                     j+=1
-            while i<n:
-                ans.append(left[i])
-                i+=1
-            while j<m:
-                ans.append(right[j])
-                j+=1
+                    
             return ans
         def mergesort(left,right,arr):
             if left==right:
